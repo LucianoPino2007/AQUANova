@@ -25,7 +25,6 @@ export default function Aside({ visible, onSelect }: Props) {
         { transform: [{ translateX: slideAnim }] },
       ]}
     >
-      <Text>Opciones</Text>
       {/* Perfil */}
       <Pressable style={styles.item} onPress={() => onSelect?.("perfil")}>
         <Ionicons name="person-outline" size={24} color="white" />
@@ -49,13 +48,19 @@ export default function Aside({ visible, onSelect }: Props) {
       {/* Historial */}
       <Pressable style={styles.item} onPress={() => onSelect?.("historial")}>
         <Ionicons name="document-text-outline" size={24} color="white" />
-        <Text style={styles.text}>Historial SECCION EN DESARROLLO</Text>
+        <Text style={styles.text}>Historial</Text>
       </Pressable>
 
       {/* Login */}
       <Pressable style={styles.item} onPress={() => onSelect?.("login")}>
         <Ionicons name="document-text-outline" size={24} color="white" />
         <Text style={styles.text}>Login</Text>
+      </Pressable>
+
+      {/* Register */}
+      <Pressable style={styles.item} onPress={() => onSelect?.("register")}>
+        <Ionicons name="document-text-outline" size={24} color="white" />
+        <Text style={styles.text}>Register</Text>
       </Pressable>
     </Animated.View>
   );

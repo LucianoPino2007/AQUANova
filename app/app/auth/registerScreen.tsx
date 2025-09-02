@@ -1,18 +1,18 @@
 // App.tsx
-import React, { useState } from "react";
+import React, { use, useState } from "react";
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert, ScrollView } from "react-native";
 
 export default function Register() {
   const [register, setVerifyTxt] = useState<"Registrarse" | "Verificarse">("Registrarse");
 
-  const [username, setNombre] = useState("");
+  const [name, setNombre] = useState("");
+  const [lastname, setApellido] = useState("");
+  const [username, setUsuario] = useState("");
   const [email, setEmail] = useState("");
   const [user_password, setPassword] = useState("");
-  const [country, setCountry] = useState("");
-  const [phone_number, setPhoneNumber] = useState("");
 
   const handleSignup = async () => {
-    if (!username || !email || !user_password || !country || !phone_number) {
+    if (!name || !lastname || !username || !user_password || !email) {
       Alert.alert("Error", "Todos los campos son obligatorios");
       return;
     }
@@ -24,7 +24,7 @@ export default function Register() {
         body: JSON.stringify({
           name,
           lastname,
-          user_password,
+          username,
           user_password,
           email,
 
@@ -39,10 +39,11 @@ export default function Register() {
 
       // limpiar campos
       setNombre("");
+      setApellido("");
+      setUsuario("");
       setEmail("");
       setPassword("");
-      setCountry("");
-      setPhoneNumber("");
+
 
       // pasar a verificar
       setVerifyTxt("Verificarse");
@@ -65,11 +66,15 @@ export default function Register() {
           />
           <TextInput
             style={styles.input}
-            placeholder="E-mail"
-            keyboardType="email-address"
-            autoCapitalize="none"
-            value={email}
-            onChangeText={setEmail}
+            placeholder="Apellido"
+            value={lastname}
+            onChangeText={setApellido}
+          />
+          <TextInput
+            style={styles.input}
+            placeholder="Usuario"
+            value={username}
+            onChangeText={setUsuario}
           />
           <TextInput
             style={styles.input}
@@ -80,16 +85,11 @@ export default function Register() {
           />
           <TextInput
             style={styles.input}
-            placeholder="País"
-            value={country}
-            onChangeText={setCountry}
-          />
-          <TextInput
-            style={styles.input}
-            placeholder="Teléfono"
-            keyboardType="phone-pad"
-            value={phone_number}
-            onChangeText={setPhoneNumber}
+            placeholder="E-mail"
+            keyboardType="email-address"
+            autoCapitalize="none"
+            value={email}
+            onChangeText={setEmail}
           />
 
           <TouchableOpacity style={styles.btn} onPress={handleSignup}>
